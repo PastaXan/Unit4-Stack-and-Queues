@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.Stack;
 
 /**
  * Starter file for Queue & Stack Exercises 1–4.
@@ -13,6 +14,8 @@ public class QueueStackExercises {
     // Exercise 1: Reverse a stack using one queue.
     public static void reverseStack(Stack<Integer> s) {
         // TODO: implement using one Queue as auxiliary storage.
+        //Queue<Integer> auxQ = new Queue<Integer>();
+
     }
 
     // Exercise 2: Reorder a queue sorted by absolute value into numeric order.
