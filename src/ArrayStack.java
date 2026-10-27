@@ -11,7 +11,7 @@ public class ArrayStack<T> implements Stack<T> {
     @Override
     public void push(T item) {
         // TODO: If the array is full, double its capacity; then store item at index n and increment n.
-        if(n==items.length){
+        if(n>=items.length){
             T[] items2 = items;
             items = (T[]) new Object[items.length*2];
             for(int i=0;i<n;i++){
@@ -40,7 +40,7 @@ public class ArrayStack<T> implements Stack<T> {
     @Override
     public int size() {
         // TODO: Return the number of items currently in the stack.
-        return n-1;
+        return n;
     }
 
     /**
@@ -53,10 +53,40 @@ public class ArrayStack<T> implements Stack<T> {
         // for each closer, check that the most recent opener has the matching type.
         ArrayStack<Character> str = new ArrayStack<Character>();
         for(int i=0;i<s.length();i++){
-            //Add the rest
+            char ch = s.charAt(i);
+            str.push(ch);
+            if(ch==')'){
+                if(i==0||s.charAt(i-1)=='['||s.charAt(i-1)=='{'){
+                    return false;
+                }
+                else{
+                    str.pop();
+                    str.pop();
+                }
+            }
+            else if(ch==']'){
+                if(i==0||s.charAt(i-1)=='('||s.charAt(i-1)=='{'){
+                    return false;
+                }
+                else{
+                    str.pop();
+                    str.pop();
+                }
+            }
+            else if(ch=='}'){
+                if(i==0||s.charAt(i-1)=='('||s.charAt(i-1)=='['){
+                    return false;
+                }
+                else{
+                    str.pop();
+                    str.pop();
+                }
+            }
+            if(i==s.length()-1&&(ch=='('||ch=='{'||ch=='[')){
+                return false;
+            }
         }
-
-        return false;
+        return true;
     }
 
 
